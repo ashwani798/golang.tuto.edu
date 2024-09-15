@@ -56,14 +56,13 @@ If the environment variables are not set automatically during installation, you 
 
 - [Golang Installation Guide](https://golang.org/doc/install)
 - [Golang Basics Tutorial](https://golang.org/doc/tutorial/create-module)
+  
 
 # Day 1: Golang Progress
 
 ## Overview
 
 On Day 1, I made significant progress in learning and working with Golang. The focus was on writing and running a simple Go program to get familiar with the basic workflow.
-
-## Activities Completed
 
 ### 1. Created the First Go Program
 
@@ -78,14 +77,14 @@ On Day 1, I made significant progress in learning and working with Golang. The f
       fmt.Println("Hello golang")
   }
 
-## Ran the Program
+### 2. Ran the Program
 
 - **Command Used**:
   ```bash
   go run main.go
 
-# Output
+### 3. Output
 
-```text
-Hello golang
+  ```text
+  Hello golang
 
