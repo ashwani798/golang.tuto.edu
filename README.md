@@ -58,11 +58,11 @@ If the environment variables are not set automatically during installation, you 
 - [Golang Basics Tutorial](https://golang.org/doc/tutorial/create-module)
   
 
-# Day 1: Golang Progress
+# Lecture 1 --Go Learning
 
 ## Overview
 
-On Day 1, I made significant progress in learning and working with Golang. The focus was on writing and running a simple Go program to get familiar with the basic workflow.
+On Lecture 1, I made significant progress in learning and working with Golang. The focus was on writing and running a simple Go program to get familiar with the basic workflow.
 
 ### 1. Created the First Go Program
 
@@ -85,6 +85,27 @@ On Day 1, I made significant progress in learning and working with Golang. The f
 
 ### 3. Output
 
+- **op**:
   ```text
   Hello golang
 
+# Lecture 2 --Go Learning
+
+This section covers my progress in Go, specifically focusing on understanding variable types and declarations as covered in Lecture 2.
+
+## Overview
+
+In this lecture, I learned about the following key concepts related to Go variables:
+
+- **Variable Declaration**: How to declare variables explicitly with types like `string`, `bool`, `uint8`, `float32`, and `int`.
+- **Default Values**: Understanding how Go assigns default values to uninitialized variables.
+- **Implicit Type Inference (Auto Substitution)**: Go’s ability to automatically infer variable types based on the value assigned. For example, if I declare `var website = "golanglearn.in"`, Go automatically substitutes the type as `string` without needing to explicitly define it.
+- **Shorthand Declaration**: A more concise way to declare and initialize variables without using the `var` keyword.
+- **Constants**: Learning how to define and use immutable values using the `const` keyword.
+
+## Key Ponits
+
+- Each variable type in Go has a default value if not initialized. For example, `int` defaults to `0`, and `string` defaults to an empty string `""`.
+- **Auto Substitution** allows Go to infer the type of a variable based on the value assigned, simplifying code and reducing the need for explicit type declarations.
+- The shorthand syntax (`:=`) is a convenient way to declare and initialize variables in a single step, letting Go infer the type automatically.
+- Constants are declared using `const` and cannot be modified after being defined.
