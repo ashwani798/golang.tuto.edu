@@ -103,9 +103,37 @@ In this lecture, I learned about the following key concepts related to Go variab
 - **Shorthand Declaration**: A more concise way to declare and initialize variables without using the `var` keyword.
 - **Constants**: Learning how to define and use immutable values using the `const` keyword.
 
-## Key Ponits
+## Key Takeaways
 
 - Each variable type in Go has a default value if not initialized. For example, `int` defaults to `0`, and `string` defaults to an empty string `""`.
 - **Auto Substitution** allows Go to infer the type of a variable based on the value assigned, simplifying code and reducing the need for explicit type declarations.
 - The shorthand syntax (`:=`) is a convenient way to declare and initialize variables in a single step, letting Go infer the type automatically.
 - Constants are declared using `const` and cannot be modified after being defined.
+
+# 3. User Input
+
+## Overview
+In this lecture, I learned how to handle user input in Go. The focus was on using the `bufio` package to capture data entered by the user through the command line.
+
+## Key Takeaways
+- **Capturing Input**: I explored how to capture user input using `bufio.NewReader`. This method allows us to read input from the standard input (console) efficiently, especially when dealing with strings.
+  
+- **Understanding `ReadString`**: I learned how the `ReadString` method works by reading the input until a specific delimiter, in this case, a newline character (`\n`). This is useful when you want to capture a full line of input.
+
+- **Displaying User Input**: After capturing the input, I learned how to display it back to the user with a custom message, confirming the interaction.
+
+- **Checking Data Types**: Another key learning point was understanding the type of the data that is being read. I used Go’s formatting verbs to display the type of the input, which is crucial for handling data properly.
+
+# 4. User Input and Conversion
+
+## Overview
+In Lecture 4, I expanded on user input handling by learning how to convert input strings into numerical data types. This included understanding error handling when working with conversions, especially when dealing with unexpected input formats.
+
+## Key Takeaways
+- **String Trimming with `strings.TrimSpace`**: I learned how to remove extra whitespace or newline characters from user input using `TrimSpace`. This is essential when dealing with inputs from the command line that may have unwanted spaces or newlines.
+  
+- **Converting Strings to Numbers**: The lecture introduced converting string input into numeric values using `strconv.ParseFloat`. This allows us to work with numbers entered by the user, such as ratings or other numerical data.
+
+- **Error Handling**: A key learning was handling potential errors that occur during the conversion process. If the input cannot be converted into a number, the program captures the error and handles it gracefully by informing the user.
+
+- **Basic Arithmetic on Input**: After converting the input to a number, I practiced performing arithmetic operations, such as adding a value to the user’s rating. This demonstrated how user input can be manipulated for different use cases.
