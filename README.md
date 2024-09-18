@@ -137,3 +137,15 @@ In Lecture 4, I expanded on user input handling by learning how to convert input
 - **Error Handling**: A key learning was handling potential errors that occur during the conversion process. If the input cannot be converted into a number, the program captures the error and handles it gracefully by informing the user.
 
 - **Basic Arithmetic on Input**: After converting the input to a number, I practiced performing arithmetic operations, such as adding a value to the user’s rating. This demonstrated how user input can be manipulated for different use cases.
+
+# 5. Date and Time Handling
+
+## Overview
+In Lecture 5, I explored how to work with date and time in Go using the `time` package. This involved retrieving the current date and time, formatting it in various ways, and creating custom date objects.
+
+## Key Takeaways
+- **Retrieving the Current Time**: I learned how to get the current date and time using `time.Now()`. This function is essential for time-stamped data or for displaying the current time in applications.
+
+- **Formatting Dates and Times**: A major part of this lecture was learning how to format time using `Format()`. Go uses a specific layout based on the reference date `01-02-2006 15:04:05` to format dates and times in various patterns (e.g., day-month-year or hour-minute-second).
+
+- **Creating Custom Dates**: I also learned how to create a specific date using `time.Date()`, which allows for defining a precise moment in time by specifying the year, month, day, hour, minute, second, and time zone.
