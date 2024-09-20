@@ -11,9 +11,12 @@ func main() {
 	FruitList[1] = "Orange"
 	FruitList[3] = "Peach"
 
-	fmt.Println("Fruit list is: ", FruitList)      //Fruit list is:  [Apple Orange  Peach]
-	fmt.Println("Fruit list is: ", len(FruitList)) //Fruit list is:  4
+	fmt.Println("Fruit list is: ", FruitList)
+	//Fruit list is:  [Apple Orange  Peach]
+	fmt.Println("Fruit list is: ", len(FruitList))
+	//Fruit list is:  4
 
 	var vegList = [5]string{"potato", "tomato", "onion"}
 	fmt.Println("veg list is:", len(vegList))
+	// veg list is: 5
 }
