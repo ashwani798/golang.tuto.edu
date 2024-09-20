@@ -162,15 +162,6 @@ In this lecture, I explored the concept of pointers in Go. Pointers allow for di
 - **Manipulating Pointer Values**: You can change the value stored at the address the pointer refers to, which updates the original variable.
 
 ## Code Example
-```go
-package main
-
-import "fmt"
-
-func main() {
-    fmt.Println("Welcome to a class on pointers")
-
-    myNumber := 23
 
     var pointer = &myNumber  // Reference the variable to store its memory address
 
@@ -179,4 +170,13 @@ func main() {
 
     *pointer = *pointer + 2  // Modify the value stored at the memory address
     fmt.Println("New value is:", myNumber)
-}
+
+# 7. Arrays
+
+## Overview
+In this lecture, I learned about arrays in Go. Arrays provide a way to store multiple values of the same type in a fixed-size structure. They are useful when you need to organize related data and access it through indexed positions.
+
+## Key Takeaways
+- **Array Declaration**: Arrays are declared with a fixed size and a specific type. Once the size is defined, it cannot be changed.
+- **Array Initialization**: Arrays can be initialized with values either at the time of declaration or by assigning values to specific indices later.
+- **Array Length**: The `len()` function returns the number of elements in an array. Even if some elements are not initialized, the length reflects the total size of the array.
