@@ -89,7 +89,7 @@ On Lecture 1, I made significant progress in learning and working with Golang. T
   ```text
   Hello golang
 
-# Lecture 2 --Go Learning
+# 2. Data Types
 
 This section covers my progress in Go, specifically focusing on understanding variable types and declarations as covered in Lecture 2.
 
@@ -149,3 +149,34 @@ In Lecture 5, I explored how to work with date and time in Go using the `time` p
 - **Formatting Dates and Times**: A major part of this lecture was learning how to format time using `Format()`. Go uses a specific layout based on the reference date `01-02-2006 15:04:05` to format dates and times in various patterns (e.g., day-month-year or hour-minute-second).
 
 - **Creating Custom Dates**: I also learned how to create a specific date using `time.Date()`, which allows for defining a precise moment in time by specifying the year, month, day, hour, minute, second, and time zone.
+
+# 6. Pointers
+
+## Overview
+In this lecture, I explored the concept of pointers in Go. Pointers allow for direct manipulation of memory addresses, which can improve program efficiency and offer deeper control over how variables are handled.
+
+## Key Takeaways
+- **Pointers**: Pointers hold the memory address of a variable.
+- **Referencing**: Using the `&` operator, you can store a variable's memory address in a pointer.
+- **Dereferencing**: The `*` operator allows you to access or modify the value located at the memory address stored in a pointer.
+- **Manipulating Pointer Values**: You can change the value stored at the address the pointer refers to, which updates the original variable.
+
+## Code Example
+```go
+package main
+
+import "fmt"
+
+func main() {
+    fmt.Println("Welcome to a class on pointers")
+
+    myNumber := 23
+
+    var pointer = &myNumber  // Reference the variable to store its memory address
+
+    fmt.Println("Value of pointer (memory address):", pointer)
+    fmt.Println("Value stored at pointer:", *pointer)  // Dereference the pointer to get the value
+
+    *pointer = *pointer + 2  // Modify the value stored at the memory address
+    fmt.Println("New value is:", myNumber)
+}
