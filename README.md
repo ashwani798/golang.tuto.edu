@@ -1,7 +1,7 @@
 # Golang Setup on Windows
 
-![Golang Logo](![Golang Logo](https:C:\Users\Dell\Downloads\Designer (3).png)
-)  <!-- image link golang -->
+![Golang Logo](https://raw.githubusercontent.com/Ashwani798/golang.tuto.edu/main/goimg.png)  <!-- image link golang -->
+
 
 ## Table of Contents
 - [Introduction](#introduction)
