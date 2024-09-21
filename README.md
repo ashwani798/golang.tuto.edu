@@ -89,87 +89,188 @@ On Lecture 1, I made significant progress in learning and working with Golang. T
   ```text
   Hello golang
 
-# 2. Data Types
-
-This section covers my progress in Go, specifically focusing on understanding variable types and declarations as covered in Lecture 2.
+# 2. Variables and Types
 
 ## Overview
-
-In this lecture, I learned about the following key concepts related to Go variables:
-
-- **Variable Declaration**: How to declare variables explicitly with types like `string`, `bool`, `uint8`, `float32`, and `int`.
-- **Default Values**: Understanding how Go assigns default values to uninitialized variables.
-- **Implicit Type Inference (Auto Substitution)**: Go’s ability to automatically infer variable types based on the value assigned. For example, if I declare `var website = "golanglearn.in"`, Go automatically substitutes the type as `string` without needing to explicitly define it.
-- **Shorthand Declaration**: A more concise way to declare and initialize variables without using the `var` keyword.
-- **Constants**: Learning how to define and use immutable values using the `const` keyword.
+In this lecture, I learned about declaring variables, understanding different data types, and exploring default values in Go.
 
 ## Key Takeaways
+- **Declaring Variables**: You can declare variables using the `var` keyword along with their type.
+    ```go
+    var username string = "Ashu"
+    ```
 
-- Each variable type in Go has a default value if not initialized. For example, `int` defaults to `0`, and `string` defaults to an empty string `""`.
-- **Auto Substitution** allows Go to infer the type of a variable based on the value assigned, simplifying code and reducing the need for explicit type declarations.
-- The shorthand syntax (`:=`) is a convenient way to declare and initialize variables in a single step, letting Go infer the type automatically.
-- Constants are declared using `const` and cannot be modified after being defined.
+- **Printing Variable Types**: Use `fmt.Printf` with the `%T` format specifier to display the type of a variable.
+    ```go
+    fmt.Printf("Variable is of type: %T \n", username)
+    ```
 
-# 3. User Input
+- **Common Data Types**:
+    - `string`: Represents a sequence of characters.
+    - `bool`: Represents a boolean value (`true` or `false`).
+    - `uint8`: Represents an unsigned 8-bit integer.
+    - `float32`: Represents a 32-bit floating-point number.
+
+    Example:
+    ```go
+    var isLoggedIn bool = false
+    var smallVal uint8 = 244
+    var smallFloat float32 = 255.4474312428
+    ```
+
+- **Default Values**: Variables have default values if not explicitly initialized. For example:
+    ```go
+    var anotherVariable int // default is 0
+    ```
+
+- **Implicit Type Declaration**: You can omit the type when initializing a variable, and Go will infer it.
+    ```go
+    var website = "golanglearn.in"
+    ```
+
+- **Short Variable Declaration**: You can declare variables without the `var` keyword using `:=`.
+    ```go
+    numberOfUser := 30000
+    ```
+
+- **Constants**: You can define constants using the `const` keyword, which remain unchanged throughout the program.
+    ```go
+    const LoginToken string = "kapa"
+    ```
+
+## Important Concepts
+- Understanding variable types is crucial for memory management and optimizing performance in Go.
+- Go's strict typing and default value system help prevent common programming errors.
+
+This lecture provided a foundational understanding of variables and data types in Go.
+
+# 3. Reading User Input
 
 ## Overview
-In this lecture, I learned how to handle user input in Go. The focus was on using the `bufio` package to capture data entered by the user through the command line.
+In this lecture, I learned how to read user input from the console in Go using the `bufio` and `os` packages. This includes basic input handling and type checking.
 
 ## Key Takeaways
-- **Capturing Input**: I explored how to capture user input using `bufio.NewReader`. This method allows us to read input from the standard input (console) efficiently, especially when dealing with strings.
-  
-- **Understanding `ReadString`**: I learned how the `ReadString` method works by reading the input until a specific delimiter, in this case, a newline character (`\n`). This is useful when you want to capture a full line of input.
+- **Basic Input Reading**: You can use `bufio.NewReader` to read input from standard input. The `ReadString()` method reads until a specified delimiter (in this case, a newline).
+    ```go
+    input, _ := reader.ReadString('\n')
+    ```
 
-- **Displaying User Input**: After capturing the input, I learned how to display it back to the user with a custom message, confirming the interaction.
+- **Displaying Input**: You can print the user's input and provide feedback.
+    ```go
+    fmt.Println("Thanks for rating, ", input)
+    ```
 
-- **Checking Data Types**: Another key learning point was understanding the type of the data that is being read. I used Go’s formatting verbs to display the type of the input, which is crucial for handling data properly.
+- **Type Checking**: The type of the input variable can be checked using the `%T` format specifier in `fmt.Printf()`.
+    ```go
+    fmt.Printf("Type of the rating %T", input)
+    ```
 
-# 4. User Input and Conversion
+## Important Concepts
+- User input is a fundamental aspect of interactive applications, and handling it properly is essential for user experience.
+- Understanding the data type of user input helps in further processing and validation.
+
+This lecture provided an introduction to managing user input effectively in Go.
+
+
+# 4. Handling User Input
 
 ## Overview
-In Lecture 4, I expanded on user input handling by learning how to convert input strings into numerical data types. This included understanding error handling when working with conversions, especially when dealing with unexpected input formats.
+In this lecture, I learned how to handle user input in Go using the `bufio` and `os` packages. This includes reading from standard input and converting input strings to numeric types.
 
 ## Key Takeaways
-- **String Trimming with `strings.TrimSpace`**: I learned how to remove extra whitespace or newline characters from user input using `TrimSpace`. This is essential when dealing with inputs from the command line that may have unwanted spaces or newlines.
-  
-- **Converting Strings to Numbers**: The lecture introduced converting string input into numeric values using `strconv.ParseFloat`. This allows us to work with numbers entered by the user, such as ratings or other numerical data.
+- **Reading User Input**: You can read user input from the console using `bufio.NewReader` and `ReadString()`.
+    ```go
+    reader := bufio.NewReader(os.Stdin)
+    input, _ := reader.ReadString('\n')
+    ```
 
-- **Error Handling**: A key learning was handling potential errors that occur during the conversion process. If the input cannot be converted into a number, the program captures the error and handles it gracefully by informing the user.
+- **Trimming Input**: It's important to trim whitespace from the input string to avoid errors when converting to a number.
+    ```go
+    strings.TrimSpace(input)
+    ```
 
-- **Basic Arithmetic on Input**: After converting the input to a number, I practiced performing arithmetic operations, such as adding a value to the user’s rating. This demonstrated how user input can be manipulated for different use cases.
+- **Converting String to Number**: Use `strconv.ParseFloat()` to convert a string input into a float64 type. This function returns an error if the conversion fails.
+    ```go
+    numRating, err := strconv.ParseFloat(strings.TrimSpace(input), 64)
+    ```
 
-# 5. Date and Time Handling
+- **Error Handling**: Always check for errors after attempting to convert user input. This ensures your program handles unexpected input gracefully.
+    ```go
+    if err != nil {
+        fmt.Println(err)
+    }
+    ```
+
+## Important Concepts
+- User input is handled via the standard input stream, making it easy to interact with users.
+- Proper error handling is crucial to make the application robust and user-friendly.
+
+This lecture provided a practical approach to managing user input effectively in Go.
+
+
+# 5.Date and Time Handling
 
 ## Overview
-In Lecture 5, I explored how to work with date and time in Go using the `time` package. This involved retrieving the current date and time, formatting it in various ways, and creating custom date objects.
+In this lecture, I learned about handling date and time in Go using the `time` package. This package provides functionality for measuring and displaying time, as well as formatting dates.
 
 ## Key Takeaways
-- **Retrieving the Current Time**: I learned how to get the current date and time using `time.Now()`. This function is essential for time-stamped data or for displaying the current time in applications.
+- **Getting the Current Time**: You can retrieve the current date and time using `time.Now()`.
+    ```go
+    presentTime := time.Now()
+    fmt.Println(presentTime)
+    ```
 
-- **Formatting Dates and Times**: A major part of this lecture was learning how to format time using `Format()`. Go uses a specific layout based on the reference date `01-02-2006 15:04:05` to format dates and times in various patterns (e.g., day-month-year or hour-minute-second).
+- **Formatting Time**: The `Format` method allows you to format the date and time according to a specified layout.
+    ```go
+    fmt.Println(presentTime.Format("01-02-2006 15:04:05 Monday"))
+    ```
 
-- **Creating Custom Dates**: I also learned how to create a specific date using `time.Date()`, which allows for defining a precise moment in time by specifying the year, month, day, hour, minute, second, and time zone.
+- **Creating a Specific Date**: You can create a specific date and time using `time.Date()`, which takes parameters for year, month, day, hour, minute, second, nanosecond, and location.
+    ```go
+    createdDate := time.Date(2023, time.January, 10, 18, 15, 8, 0, time.UTC)
+    fmt.Println(createdDate)
+    ```
 
-# 6. Pointers
+- **Formatting Created Dates**: Just like with the current time, you can format the created date as well.
+    ```go
+    fmt.Println(createdDate.Format("01-02-2006 15:04:05 Monday"))
+    ```
+
+## Important Concepts
+- The `time` package in Go provides a robust set of functionalities for time manipulation and formatting.
+- Custom date formats are specified using a reference date: `Mon Jan 2 15:04:05 MST 2006`.
+
+This lecture helped me understand how to effectively manage and format dates and times in Go.
+
+
+# 6. pointers
 
 ## Overview
-In this lecture, I explored the concept of pointers in Go. Pointers allow for direct manipulation of memory addresses, which can improve program efficiency and offer deeper control over how variables are handled.
+In this lecture, I learned about pointers in Go. Pointers allow you to store the memory address of a variable, enabling you to directly modify the value stored at that memory address. This concept is essential for efficient memory management and understanding the underlying workings of Go programs.
 
 ## Key Takeaways
-- **Pointers**: Pointers hold the memory address of a variable.
-- **Referencing**: Using the `&` operator, you can store a variable's memory address in a pointer.
-- **Dereferencing**: The `*` operator allows you to access or modify the value located at the memory address stored in a pointer.
-- **Manipulating Pointer Values**: You can change the value stored at the address the pointer refers to, which updates the original variable.
+- **Pointer Declaration**: A pointer holds the memory address of a variable. You declare a pointer using an asterisk (`*`) before the type, and you reference the memory address of a variable with an ampersand (`&`).
+    ```go
+    var pointer *int = &myNumber
+    ```
+- **Dereferencing a Pointer**: You can access or modify the value at the memory address a pointer holds by dereferencing the pointer using an asterisk (`*`).
+    ```go
+    fmt.Println(*pointer)
+    ```
+    In this case, the pointer holds the address of `myNumber`, so dereferencing the pointer accesses the value of `myNumber` (which initially was `23`).
 
-## Code Example
+- **Modifying a Value Through a Pointer**: By dereferencing a pointer, you can also change the value of the variable it points to.
+    ```go
+    *pointer = *pointer + 2
+    ```
+    This line increases the value of `myNumber` (through the pointer) by 2. Therefore, the new value of `myNumber` becomes `25`.
 
-    var pointer = &myNumber  // Reference the variable to store its memory address
+## Important Concepts
+- **Pointer Address**: The pointer itself stores the memory address of a variable, such as `0xc00008c098`. 
+- **Dereferencing and Changing Values**: You can use pointers to both retrieve and update values stored at a particular memory location. For example, after updating through the pointer, `myNumber` changes to `25`.
 
-    fmt.Println("Value of pointer (memory address):", pointer)
-    fmt.Println("Value stored at pointer:", *pointer)  // Dereference the pointer to get the value
+Pointers help manage memory effectively and give more control over how values are handled in your program.
 
-    *pointer = *pointer + 2  // Modify the value stored at the memory address
-    fmt.Println("New value is:", myNumber)
 
 # 7. Arrays
 
