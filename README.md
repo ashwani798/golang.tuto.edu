@@ -58,7 +58,7 @@ If the environment variables are not set automatically during installation, you 
 - [Golang Basics Tutorial](https://golang.org/doc/tutorial/create-module)
   
 
-# Lecture 1 --Go Learning
+# Go Learning
 
 ## Overview
 
@@ -174,9 +174,97 @@ In this lecture, I explored the concept of pointers in Go. Pointers allow for di
 # 7. Arrays
 
 ## Overview
-In this lecture, I learned about arrays in Go. Arrays provide a way to store multiple values of the same type in a fixed-size structure. They are useful when you need to organize related data and access it through indexed positions.
+In this lecture, I learned more about arrays in Go. Arrays store multiple elements of the same type with a fixed size, and uninitialized elements take their zero values.
 
 ## Key Takeaways
-- **Array Declaration**: Arrays are declared with a fixed size and a specific type. Once the size is defined, it cannot be changed.
-- **Array Initialization**: Arrays can be initialized with values either at the time of declaration or by assigning values to specific indices later.
-- **Array Length**: The `len()` function returns the number of elements in an array. Even if some elements are not initialized, the length reflects the total size of the array.
+- **Array Declaration**: Arrays in Go are declared with a fixed size and a specific data type.
+    ```go
+    var FruitList [4]string
+    ```
+- **Assigning Values**: You can assign values to specific elements in an array by referencing their index.
+    ```go
+    FruitList[0] = "Apple"
+    ```
+- **Array Length**: The `len()` function is used to get the size of the array, including uninitialized elements.
+    ```go
+    fmt.Println(len(FruitList))
+    ```
+- **Initializing Arrays**: Arrays can be initialized with values at the time of declaration.
+    ```go
+    var vegList = [5]string{"potato", "tomato", "onion"}
+    ```
+
+# 8. Slice
+
+## Overview
+In this lecture, I learned about slices in Go. Slices provide a more flexible and dynamic way to handle collections compared to arrays, as their size can change.
+
+## Key Takeaways
+- **Slice Declaration**: Slices are declared without specifying their size, unlike arrays.
+    ```go
+    var fruitList = []string{"Apple", "Orange", "Peach"}
+    ```
+- **Appending Elements**: You can append elements to a slice dynamically using the `append` function.
+    ```go
+    fruitList = append(fruitList, "Mango", "Banana")
+    ```
+- **Slice Operations**: Slices can be manipulated with indexing and ranges.
+    ```go
+    fruitList = append(fruitList[1:3])
+    ```
+- **Sorting Slices**: Sorting functions like `sort.Ints` can be used for sorting integer slices.
+    ```go
+    sort.Ints(highScore)
+    ```
+- **Removing Elements**: You can remove elements from a slice by appending the part before and after the index.
+    ```go
+    courses = append(courses[:index], courses[index+1:]...)
+    ```
+
+# 9. Maps
+
+## Overview
+In this lecture, I learned about maps in Go. Maps are collections of key-value pairs that allow you to store and retrieve data efficiently using unique keys.
+
+## Key Takeaways
+- **Map Creation**: Maps are created using the `make` function, specifying the key and value types.
+    ```go
+    languages := make(map[string]string)
+    ```
+- **Adding Elements**: You can add key-value pairs to a map by assigning values to keys.
+    ```go
+    languages["JS"] = "javaScript"
+    ```
+- **Deleting Elements**: Use the `delete` function to remove elements from a map.
+    ```go
+    delete(languages, "JS")
+    ```
+- **Looping Through Maps**: You can iterate over a map using a `for` loop with the `range` keyword to access keys and values.
+    ```go
+    for key, value := range languages {
+        fmt.Println("For key %v, value is %v", key, value)
+    }
+    ```
+# 10.Structs
+
+## Overview
+In this lecture, I learned about structs in Go. Structs are used to group together related data under a single type. Unlike other object-oriented languages, Go doesn't have inheritance, meaning structs don’t have super or parent types.
+
+## Key Takeaways
+- **Struct Declaration**: Structs are declared as a collection of fields, each with its own type.
+    ```go
+    type User struct {
+        Name   string
+        Emali  string
+        Status bool
+        Age    int
+    }
+    ```
+- **Creating a Struct**: You can create an instance of a struct by specifying values for its fields.
+    ```go
+    Ashu := User{"Ashu", "ashu@go.dev", true, 22}
+    ```
+- **Accessing Struct Fields**: Fields in a struct can be accessed using the dot notation.
+    ```go
+    fmt.Printf("Name is %v and email is %v.", Ashu.Name, Ashu.Emali)
+    ```
