@@ -376,3 +376,91 @@ In this lecture, I learned about structs in Go. Structs are used to group togeth
     ```go
     fmt.Printf("Name is %v and email is %v.", Ashu.Name, Ashu.Emali)
     ```
+
+# 11. If-Else
+
+## Overview
+In this lecture, I learned how to use if-else statements in Go for conditional logic. The if-else construct allows for dynamic decision-making in programs based on specific conditions.
+
+## Key Takeaways
+- **Basic If-Else Statement**: You can use the if-else construct to check a condition and execute corresponding code blocks.
+    ```go
+    loginCount := 10
+    var result string
+
+    if loginCount < 10 {
+        result = "Regular user"
+    } else if loginCount > 10 {
+        result = "Watch out"
+    } else {
+        result = "Exactly 10 login count"
+    }
+    fmt.Println(result)
+    ```
+    In this example, the program checks the value of `loginCount` and assigns a result based on the condition.
+
+- **Even/Odd Check**: The if-else construct can also be used to check conditions like even or odd numbers.
+    ```go
+    if 9%2 == 0 {
+        fmt.Println("Number is even")
+    } else {
+        fmt.Println("Number is odd")
+    }
+    ```
+    This checks whether the number 9 is even or odd.
+
+- **Short Variable Declaration**: You can declare and initialize a variable within an if statement.
+    ```go
+    if num := 3; num < 10 {
+        fmt.Println("num is less than 10")
+    } else {
+        fmt.Println("num is NOT less than 10")
+    }
+    ```
+    This demonstrates declaring `num` and checking its value in a single line.
+
+# 12. Switch-Case
+
+## Overview
+In this lecture, I learned how to use switch-case statements in Go. Switch-case is a control structure that allows for multi-way branching based on the value of a variable.
+
+## Key Takeaways
+- **Basic Switch Statement**: A switch statement can replace long chains of if-else statements. It evaluates the expression and executes the matching case block.
+    ```go
+    switch diceNumber {
+    case 1:
+        fmt.Println("Dice value is 1 and you can open")
+    case 2:
+        fmt.Println("you can move 2 spot")
+    case 3:
+        fmt.Println("you can move 3 spot")
+        fallthrough
+    case 4:
+        fmt.Println("you can move 4 spot")
+        fallthrough
+    case 5:
+        fmt.Println("you can move 5 spot")
+    case 6:
+        fmt.Println("you can move 6 spot and roll dice again")
+    default:
+        fmt.Println("What was that!")
+    }
+    ```
+
+- **Fallthrough Behavior**: The `fallthrough` statement allows the execution to continue to the next case, even if the case condition is not met.
+    ```go
+    case 3:
+        fmt.Println("you can move 3 spot")
+        fallthrough
+    case 4:
+        fmt.Println("you can move 4 spot")
+    ```
+
+- **Random Dice Roll**: In this example, a random number between 1 and 6 is generated to simulate a dice roll.
+    ```go
+    rand.Seed(time.Now().UnixNano())
+    diceNumber := rand.Intn(6) + 1
+    fmt.Println("Value of dice is: ", diceNumber)
+    ```
+
+This demonstrates the use of switch-case statements in a practical scenario.
