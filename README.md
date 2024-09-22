@@ -464,3 +464,101 @@ In this lecture, I learned how to use switch-case statements in Go. Switch-case 
     ```
 
     This demonstrates the use of `switch-case` statements in a practical scenario.
+
+# 13. Loops
+
+## Overview
+In this lecture, I learned about loops in Go. Loops are used to execute a block of code repeatedly until a specified condition is met.
+
+## Key Takeaways
+- **Basic For Loop**: Go uses the `for` keyword to create loops. The traditional for loop works similarly to other languages.
+    ```go
+    for i := 0; i < len(days); i++ {
+        fmt.Println(days[i])
+    }
+    ```
+    This loop prints each element from the `days` slice by iterating through its indices.
+
+- **For-Range Loop**: You can also use the `range` keyword to loop over a slice and access both the index and value.
+    ```go
+    for index, day := range days {
+        fmt.Printf("index is %v and value is %v\n", index, day)
+    }
+    ```
+    This loop prints both the index and value of each element in the `days` slice.
+
+- **While-like Loop**: In Go, `for` can also be used to simulate a `while` loop.
+    ```go
+    rogueValue := 1
+    for rogueValue < 10 {
+        fmt.Println("value is:", rogueValue)
+        rogueValue++
+    }
+    ```
+    This loop keeps running until `rogueValue` reaches 10.
+
+- **Break and Continue**: Go supports the `break` and `continue` keywords to control loop execution.
+    ```go
+    for rogueValue < 10 {
+        if rogueValue == 4 {
+            break
+        }
+        fmt.Println("value is:", rogueValue)
+        rogueValue++
+    }
+    ```
+    This breaks the loop when `rogueValue` reaches 4.
+
+- **Goto Statement**: Go has a `goto` statement for jumping to specific labels in the code.
+    ```go
+    if rogueValue == 2 {
+        goto lco
+    }
+    lco:
+    fmt.Println("Jumping at GoLearning")
+    ```
+    This jumps to the `lco` label when `rogueValue` is 2.
+
+---
+
+# 14. Functions
+
+## Overview
+In this lecture, I learned about functions in Go, including basic function definition, variadic functions, and multiple return values.
+
+## Key Takeaways
+- **Basic Function Definition**: Functions are defined using the `func` keyword and can be called to execute code.
+    ```go
+    func greeter() {
+        fmt.Println("Namaste from INDIA")
+    }
+    ```
+    This function prints a simple greeting message.
+
+- **Variadic Functions**: These functions can accept a variable number of arguments. Useful when you don't know how many inputs you will need to handle.
+    ```go
+    func proAdder(values ...int) (int, string) {
+        total := 0
+        for _, val := range values {
+            total += val
+        }
+        return total, "hi, my name is ashu"
+    }
+    ```
+    This function adds multiple integers and returns the total along with a string.
+
+- **Calling Functions**: Functions can be called by their name followed by parentheses, passing arguments if needed.
+    ```go
+    proRes, myAdd := proAdder(2, 4, 7, 17, 10, 2, 8)
+    fmt.Println("pro result is:", proRes)
+    fmt.Println("Total Add is:", myAdd)
+    ```
+    This demonstrates calling a function with multiple arguments and handling the return values.
+
+- **Multiple Return Values**: Go supports functions that can return more than one value.
+    ```go
+    return total, "hi, my name is ashu"
+    ```
+    This variadic `function` returns both the total sum of the numbers and a string message.
+
+---
