@@ -1,32 +1,37 @@
 # Golang Setup on Windows
 
-## Introduction
+![Golang Logo](https://raw.githubusercontent.com/Ashwani798/golang.tuto.edu/main/goimg.png)  <!-- image link golang -->
 
-This guide will help you install and configure Golang on a Windows system. Follow the steps below to get your Go development environment up and running.
+
+## Table of Contents
+- [Introduction](#introduction)
+- [Installation Process](#installation-process)
+  - [Step 1: Download Golang](#step-1-download-golang)
+  - [Step 2: Run the Installer](#step-2-run-the-installer)
+  - [Step 3: Verify Installation](#step-3-verify-installation)
+  - [Step 4: Set Up Go Environment Variables](#step-4-set-up-go-environment-variables)
+  - [Step 5: Set Up Your Workspace](#step-5-set-up-your-workspace)
+- [Additional Resources](#additional-resources)
+
+## Introduction
+This guide helps you install and configure Golang on a Windows system.
 
 ## Installation Process
 
 ### Step 1: Download Golang
-
 1. Visit the official Golang website: [Golang Downloads](https://golang.org/dl/).
-2. Download the latest Windows installer (.msi file) suitable for your system architecture (64-bit or 32-bit).
+2. Download the latest Windows installer suitable for your system architecture.
 
 ### Step 2: Run the Installer
-
-1. Double-click the downloaded `.msi` file to start the installation process.
-2. Follow the installation prompts. The default installation path is `C:\Program Files\Go\`, but you can choose a different location if preferred.
+1. Double-click the downloaded `.msi` file.
+2. Follow the installation prompts.
 
 ### Step 3: Verify Installation
-
 1. Open **Command Prompt** or **PowerShell**.
-2. Run the following command to verify that Golang is correctly installed:
+2. Run:
 
-    ```bash
-    go version
-    ```
-
-   You should see the Go version information displayed.
-
+   ```bash
+   go version
 ### Step 4: Set Up Go Environment Variables (Optional)
 
 If the environment variables are not set automatically during installation, you can configure them manually:
@@ -56,127 +61,318 @@ If the environment variables are not set automatically during installation, you 
 
 - [Golang Installation Guide](https://golang.org/doc/install)
 - [Golang Basics Tutorial](https://golang.org/doc/tutorial/create-module)
-  
 
-# Lecture 1 --Go Learning
-
-## Overview
-
-On Lecture 1, I made significant progress in learning and working with Golang. The focus was on writing and running a simple Go program to get familiar with the basic workflow.
-
-### 1. Created the First Go Program
-
-- **File Created**: `main.go`
-- **Code Written**:
-  ```go
-  package main
-
-  import "fmt"
-
-  func main() {
-      fmt.Println("Hello golang")
-  }
-
-### 2. Ran the Program
-
-- **Command Used**:
-  ```bash
-  go run main.go
-
-### 3. Output
-
-- **op**:
-  ```text
-  Hello golang
-
-# 2. Data Types
-
-This section covers my progress in Go, specifically focusing on understanding variable types and declarations as covered in Lecture 2.
+# 1.Hello World in go
 
 ## Overview
-
-In this lecture, I learned about the following key concepts related to Go variables:
-
-- **Variable Declaration**: How to declare variables explicitly with types like `string`, `bool`, `uint8`, `float32`, and `int`.
-- **Default Values**: Understanding how Go assigns default values to uninitialized variables.
-- **Implicit Type Inference (Auto Substitution)**: Go’s ability to automatically infer variable types based on the value assigned. For example, if I declare `var website = "golanglearn.in"`, Go automatically substitutes the type as `string` without needing to explicitly define it.
-- **Shorthand Declaration**: A more concise way to declare and initialize variables without using the `var` keyword.
-- **Constants**: Learning how to define and use immutable values using the `const` keyword.
+In this lecture, I learned how to create a basic "Hello, World!" program in Go. This is often the first step in learning a new programming language.
 
 ## Key Takeaways
+- **Basic Structure**: Every Go program starts with the `package main` declaration, indicating that it is an executable program.
+    ```go
+    package main
+    ```
 
-- Each variable type in Go has a default value if not initialized. For example, `int` defaults to `0`, and `string` defaults to an empty string `""`.
-- **Auto Substitution** allows Go to infer the type of a variable based on the value assigned, simplifying code and reducing the need for explicit type declarations.
-- The shorthand syntax (`:=`) is a convenient way to declare and initialize variables in a single step, letting Go infer the type automatically.
-- Constants are declared using `const` and cannot be modified after being defined.
+- **Importing Packages**: The `import` statement is used to include the `fmt` package, which provides formatted I/O functions.
+    ```go
+    import "fmt"
+    ```
 
-# 3. User Input
+- **Main Function**: The `main` function is the entry point of a Go program. When the program is run, execution starts here.
+    ```go
+    func main() {
+        fmt.Println("Hello golang")
+    }
+    ```
 
-## Overview
-In this lecture, I learned how to handle user input in Go. The focus was on using the `bufio` package to capture data entered by the user through the command line.
+- **Printing Output**: The `fmt.Println` function is used to print text to the console.
+    ```go
+    fmt.Println("Hello golang")
+    ```
 
-## Key Takeaways
-- **Capturing Input**: I explored how to capture user input using `bufio.NewReader`. This method allows us to read input from the standard input (console) efficiently, especially when dealing with strings.
-  
-- **Understanding `ReadString`**: I learned how the `ReadString` method works by reading the input until a specific delimiter, in this case, a newline character (`\n`). This is useful when you want to capture a full line of input.
+## Important Concepts
+- This program illustrates the basic syntax and structure of a Go program.
+- Understanding the setup of a simple program is essential for progressing to more complex concepts in Go.
 
-- **Displaying User Input**: After capturing the input, I learned how to display it back to the user with a custom message, confirming the interaction.
+This lecture served as an introduction to the Go programming language and its syntax.
 
-- **Checking Data Types**: Another key learning point was understanding the type of the data that is being read. I used Go’s formatting verbs to display the type of the input, which is crucial for handling data properly.
-
-# 4. User Input and Conversion
-
-## Overview
-In Lecture 4, I expanded on user input handling by learning how to convert input strings into numerical data types. This included understanding error handling when working with conversions, especially when dealing with unexpected input formats.
-
-## Key Takeaways
-- **String Trimming with `strings.TrimSpace`**: I learned how to remove extra whitespace or newline characters from user input using `TrimSpace`. This is essential when dealing with inputs from the command line that may have unwanted spaces or newlines.
-  
-- **Converting Strings to Numbers**: The lecture introduced converting string input into numeric values using `strconv.ParseFloat`. This allows us to work with numbers entered by the user, such as ratings or other numerical data.
-
-- **Error Handling**: A key learning was handling potential errors that occur during the conversion process. If the input cannot be converted into a number, the program captures the error and handles it gracefully by informing the user.
-
-- **Basic Arithmetic on Input**: After converting the input to a number, I practiced performing arithmetic operations, such as adding a value to the user’s rating. This demonstrated how user input can be manipulated for different use cases.
-
-# 5. Date and Time Handling
+# 2. Variables and Types
 
 ## Overview
-In Lecture 5, I explored how to work with date and time in Go using the `time` package. This involved retrieving the current date and time, formatting it in various ways, and creating custom date objects.
+In this lecture, I learned about declaring variables, understanding different data types, and exploring default values in Go.
 
 ## Key Takeaways
-- **Retrieving the Current Time**: I learned how to get the current date and time using `time.Now()`. This function is essential for time-stamped data or for displaying the current time in applications.
+- **Declaring Variables**: You can declare variables using the `var` keyword along with their type.
+    ```go
+    var username string = "Ashu"
+    ```
 
-- **Formatting Dates and Times**: A major part of this lecture was learning how to format time using `Format()`. Go uses a specific layout based on the reference date `01-02-2006 15:04:05` to format dates and times in various patterns (e.g., day-month-year or hour-minute-second).
+- **Printing Variable Types**: Use `fmt.Printf` with the `%T` format specifier to display the type of a variable.
+    ```go
+    fmt.Printf("Variable is of type: %T \n", username)
+    ```
 
-- **Creating Custom Dates**: I also learned how to create a specific date using `time.Date()`, which allows for defining a precise moment in time by specifying the year, month, day, hour, minute, second, and time zone.
+- **Common Data Types**:
+    - `string`: Represents a sequence of characters.
+    - `bool`: Represents a boolean value (`true` or `false`).
+    - `uint8`: Represents an unsigned 8-bit integer.
+    - `float32`: Represents a 32-bit floating-point number.
 
-# 6. Pointers
+    Example:
+    ```go
+    var isLoggedIn bool = false
+    var smallVal uint8 = 244
+    var smallFloat float32 = 255.4474312428
+    ```
+
+- **Default Values**: Variables have default values if not explicitly initialized. For example:
+    ```go
+    var anotherVariable int // default is 0
+    ```
+
+- **Implicit Type Declaration**: You can omit the type when initializing a variable, and Go will infer it.
+    ```go
+    var website = "golanglearn.in"
+    ```
+
+- **Short Variable Declaration**: You can declare variables without the `var` keyword using `:=`.
+    ```go
+    numberOfUser := 30000
+    ```
+
+- **Constants**: You can define constants using the `const` keyword, which remain unchanged throughout the program.
+    ```go
+    const LoginToken string = "kapa"
+    ```
+
+## Important Concepts
+- Understanding variable types is crucial for memory management and optimizing performance in Go.
+- Go's strict typing and default value system help prevent common programming errors.
+
+This lecture provided a foundational understanding of variables and data types in Go.
+    
+3. Reading User Input
 
 ## Overview
-In this lecture, I explored the concept of pointers in Go. Pointers allow for direct manipulation of memory addresses, which can improve program efficiency and offer deeper control over how variables are handled.
+In this lecture, I learned how to read user input from the console in Go using the `bufio` and `os` packages. This includes basic input handling and type checking.
 
 ## Key Takeaways
-- **Pointers**: Pointers hold the memory address of a variable.
-- **Referencing**: Using the `&` operator, you can store a variable's memory address in a pointer.
-- **Dereferencing**: The `*` operator allows you to access or modify the value located at the memory address stored in a pointer.
-- **Manipulating Pointer Values**: You can change the value stored at the address the pointer refers to, which updates the original variable.
+- **Basic Input Reading**: You can use `bufio.NewReader` to read input from standard input. The `ReadString()` method reads until a specified delimiter (in this case, a newline).
+    ```go
+    input, _ := reader.ReadString('\n')
+    ```
 
-## Code Example
+- **Displaying Input**: You can print the user's input and provide feedback.
+    ```go
+    fmt.Println("Thanks for rating, ", input)
+    ```
 
-    var pointer = &myNumber  // Reference the variable to store its memory address
+- **Type Checking**: The type of the input variable can be checked using the `%T` format specifier in `fmt.Printf()`.
+    ```go
+    fmt.Printf("Type of the rating %T", input)
+    ```
 
-    fmt.Println("Value of pointer (memory address):", pointer)
-    fmt.Println("Value stored at pointer:", *pointer)  // Dereference the pointer to get the value
+## Important Concepts
+- User input is a fundamental aspect of interactive applications, and handling it properly is essential for user experience.
+- Understanding the data type of user input helps in further processing and validation.
 
-    *pointer = *pointer + 2  // Modify the value stored at the memory address
-    fmt.Println("New value is:", myNumber)
+This lecture provided an introduction to managing user input effectively in Go.
+
+
+# 4. Handling User Input
+
+## Overview
+In this lecture, I learned how to handle user input in Go using the `bufio` and `os` packages. This includes reading from standard input and converting input strings to numeric types.
+
+## Key Takeaways
+- **Reading User Input**: You can read user input from the console using `bufio.NewReader` and `ReadString()`.
+    ```go
+    reader := bufio.NewReader(os.Stdin)
+    input, _ := reader.ReadString('\n')
+    ```
+
+- **Trimming Input**: It's important to trim whitespace from the input string to avoid errors when converting to a number.
+    ```go
+    strings.TrimSpace(input)
+    ```
+
+- **Converting String to Number**: Use `strconv.ParseFloat()` to convert a string input into a float64 type. This function returns an error if the conversion fails.
+    ```go
+    numRating, err := strconv.ParseFloat(strings.TrimSpace(input), 64)
+    ```
+
+- **Error Handling**: Always check for errors after attempting to convert user input. This ensures your program handles unexpected input gracefully.
+    ```go
+    if err != nil {
+        fmt.Println(err)
+    }
+    ```
+
+## Important Concepts
+- User input is handled via the standard input stream, making it easy to interact with users.
+- Proper error handling is crucial to make the application robust and user-friendly.
+
+This lecture provided a practical approach to managing user input effectively in Go.
+
+
+# 5.Date and Time Handling
+
+## Overview
+In this lecture, I learned about handling date and time in Go using the `time` package. This package provides functionality for measuring and displaying time, as well as formatting dates.
+
+## Key Takeaways
+- **Getting the Current Time**: You can retrieve the current date and time using `time.Now()`.
+    ```go
+    presentTime := time.Now()
+    fmt.Println(presentTime)
+    ```
+
+- **Formatting Time**: The `Format` method allows you to format the date and time according to a specified layout.
+    ```go
+    fmt.Println(presentTime.Format("01-02-2006 15:04:05 Monday"))
+    ```
+
+- **Creating a Specific Date**: You can create a specific date and time using `time.Date()`, which takes parameters for year, month, day, hour, minute, second, nanosecond, and location.
+    ```go
+    createdDate := time.Date(2023, time.January, 10, 18, 15, 8, 0, time.UTC)
+    fmt.Println(createdDate)
+    ```
+
+- **Formatting Created Dates**: Just like with the current time, you can format the created date as well.
+    ```go
+    fmt.Println(createdDate.Format("01-02-2006 15:04:05 Monday"))
+    ```
+
+## Important Concepts
+- The `time` package in Go provides a robust set of functionalities for time manipulation and formatting.
+- Custom date formats are specified using a reference date: `Mon Jan 2 15:04:05 MST 2006`.
+
+This lecture helped me understand how to effectively manage and format dates and times in Go.
+
+
+# 6. pointers
+
+## Overview
+In this lecture, I learned about pointers in Go. Pointers allow you to store the memory address of a variable, enabling you to directly modify the value stored at that memory address. This concept is essential for efficient memory management and understanding the underlying workings of Go programs.
+
+## Key Takeaways
+- **Pointer Declaration**: A pointer holds the memory address of a variable. You declare a pointer using an asterisk (`*`) before the type, and you reference the memory address of a variable with an ampersand (`&`).
+    ```go
+    var pointer *int = &myNumber
+    ```
+- **Dereferencing a Pointer**: You can access or modify the value at the memory address a pointer holds by dereferencing the pointer using an asterisk (`*`).
+    ```go
+    fmt.Println(*pointer)
+    ```
+    In this case, the pointer holds the address of `myNumber`, so dereferencing the pointer accesses the value of `myNumber` (which initially was `23`).
+
+- **Modifying a Value Through a Pointer**: By dereferencing a pointer, you can also change the value of the variable it points to.
+    ```go
+    *pointer = *pointer + 2
+    ```
+    This line increases the value of `myNumber` (through the pointer) by 2. Therefore, the new value of `myNumber` becomes `25`.
+
+## Important Concepts
+- **Pointer Address**: The pointer itself stores the memory address of a variable, such as `0xc00008c098`. 
+- **Dereferencing and Changing Values**: You can use pointers to both retrieve and update values stored at a particular memory location. For example, after updating through the pointer, `myNumber` changes to `25`.
+
+Pointers help manage memory effectively and give more control over how values are handled in your program.
+
 
 # 7. Arrays
 
 ## Overview
-In this lecture, I learned about arrays in Go. Arrays provide a way to store multiple values of the same type in a fixed-size structure. They are useful when you need to organize related data and access it through indexed positions.
+In this lecture, I learned more about arrays in Go. Arrays store multiple elements of the same type with a fixed size, and uninitialized elements take their zero values.
 
 ## Key Takeaways
-- **Array Declaration**: Arrays are declared with a fixed size and a specific type. Once the size is defined, it cannot be changed.
-- **Array Initialization**: Arrays can be initialized with values either at the time of declaration or by assigning values to specific indices later.
-- **Array Length**: The `len()` function returns the number of elements in an array. Even if some elements are not initialized, the length reflects the total size of the array.
+- **Array Declaration**: Arrays in Go are declared with a fixed size and a specific data type.
+    ```go
+    var FruitList [4]string
+    ```
+- **Assigning Values**: You can assign values to specific elements in an array by referencing their index.
+    ```go
+    FruitList[0] = "Apple"
+    ```
+- **Array Length**: The `len()` function is used to get the size of the array, including uninitialized elements.
+    ```go
+    fmt.Println(len(FruitList))
+    ```
+- **Initializing Arrays**: Arrays can be initialized with values at the time of declaration.
+    ```go
+    var vegList = [5]string{"potato", "tomato", "onion"}
+    ```
+
+# 8. Slice
+
+## Overview
+In this lecture, I learned about slices in Go. Slices provide a more flexible and dynamic way to handle collections compared to arrays, as their size can change.
+
+## Key Takeaways
+- **Slice Declaration**: Slices are declared without specifying their size, unlike arrays.
+    ```go
+    var fruitList = []string{"Apple", "Orange", "Peach"}
+    ```
+- **Appending Elements**: You can append elements to a slice dynamically using the `append` function.
+    ```go
+    fruitList = append(fruitList, "Mango", "Banana")
+    ```
+- **Slice Operations**: Slices can be manipulated with indexing and ranges.
+    ```go
+    fruitList = append(fruitList[1:3])
+    ```
+- **Sorting Slices**: Sorting functions like `sort.Ints` can be used for sorting integer slices.
+    ```go
+    sort.Ints(highScore)
+    ```
+- **Removing Elements**: You can remove elements from a slice by appending the part before and after the index.
+    ```go
+    courses = append(courses[:index], courses[index+1:]...)
+    ```
+
+# 9. Maps
+
+## Overview
+In this lecture, I learned about maps in Go. Maps are collections of key-value pairs that allow you to store and retrieve data efficiently using unique keys.
+
+## Key Takeaways
+- **Map Creation**: Maps are created using the `make` function, specifying the key and value types.
+    ```go
+    languages := make(map[string]string)
+    ```
+- **Adding Elements**: You can add key-value pairs to a map by assigning values to keys.
+    ```go
+    languages["JS"] = "javaScript"
+    ```
+- **Deleting Elements**: Use the `delete` function to remove elements from a map.
+    ```go
+    delete(languages, "JS")
+    ```
+- **Looping Through Maps**: You can iterate over a map using a `for` loop with the `range` keyword to access keys and values.
+    ```go
+    for key, value := range languages {
+        fmt.Println("For key %v, value is %v", key, value)
+    }
+    ```
+# 10.Structs
+
+## Overview
+In this lecture, I learned about structs in Go. Structs are used to group together related data under a single type. Unlike other object-oriented languages, Go doesn't have inheritance, meaning structs don’t have super or parent types.
+
+## Key Takeaways
+- **Struct Declaration**: Structs are declared as a collection of fields, each with its own type.
+    ```go
+    type User struct {
+        Name   string
+        Emali  string
+        Status bool
+        Age    int
+    }
+    ```
+- **Creating a Struct**: You can create an instance of a struct by specifying values for its fields.
+    ```go
+    Ashu := User{"Ashu", "ashu@go.dev", true, 22}
+    ```
+- **Accessing Struct Fields**: Fields in a struct can be accessed using the dot notation.
+    ```go
+    fmt.Printf("Name is %v and email is %v.", Ashu.Name, Ashu.Emali)
+    ```
