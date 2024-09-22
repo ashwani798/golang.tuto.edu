@@ -463,4 +463,4 @@ In this lecture, I learned how to use switch-case statements in Go. Switch-case 
     fmt.Println("Value of dice is: ", diceNumber)
     ```
 
-This demonstrates the use of switch-case statements in a practical scenario.
+    This demonstrates the use of `switch-case` statements in a practical scenario.
