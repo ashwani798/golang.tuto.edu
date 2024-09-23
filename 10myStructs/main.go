@@ -11,14 +11,14 @@ func main() {
 	fmt.Println(Ashu)
 	//{Ashu ashu@go.dev true 22}
 	fmt.Printf("Ashu details are: %+v", Ashu)
-	//Ashu details are: {Nmae:Ashu Emali:ashu@go.dev Status:true Age:22}
-	fmt.Printf("Name is %v and email is %v.", Ashu.Name, Ashu.Emali)
+	//Ashu details are: {Nmae:Ashu Email:ashu@go.dev Status:true Age:22}
+	fmt.Printf("Name is %v and email is %v.", Ashu.Name, Ashu.Email)
 	//Name is Ashu and email is ashu@go.dev.
 }
 
 type User struct {
 	Name   string
-	Emali  string
+	Email  string
 	Status bool
 	Age    int
 }
