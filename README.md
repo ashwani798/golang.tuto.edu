@@ -562,3 +562,53 @@ In this lecture, I learned about functions in Go, including basic function defin
     This variadic `function` returns both the total sum of the numbers and a string message.
 
 ---
+
+# 15. Methods with Structs 
+
+## Overview
+In this lecture, I learned how to define and use methods with structs in Go. Structs allow grouping of related data, while methods allow functions to be associated with these structs.
+
+## Key Takeaways
+- **Struct Definition**: Structs are used to define a collection of fields.
+    ```go
+    type User struct {
+        Name   string
+        Email  string
+        Status bool
+        Age    int
+    }
+    ```
+
+- **Creating Struct Instances**: You can create instances of structs by specifying values for each field.
+    ```go
+    Ashu := User{"Ashu", "ashu@go.dev", true, 22}
+    fmt.Println(Ashu)
+    ```
+
+- **Accessing Fields**: Struct fields are accessed using the dot (`.`) operator.
+    ```go
+    fmt.Printf("Name is %v and email is %v.", Ashu.Name, Ashu.Email)
+    ```
+
+- **Defining Methods**: Methods are defined using a receiver of the struct type.
+    ```go
+    func (u User) GetStatus() {
+        fmt.Println("Is user active: ", u.Status)
+    }
+    ```
+
+- **Calling Methods**: Methods are called on struct instances like regular functions.
+    ```go
+    Ashu.GetStatus()
+    ```
+
+- **Modifying Struct Fields in Methods**: Fields can be modified inside methods, but the changes won't affect the original struct unless a pointer receiver is used.
+    ```go
+    func (u User) NewMail() {
+        u.Email = "test@go.dev"
+        fmt.Println("Email of this user is: ", u.Email)
+    }
+    ```
+    In this case, the `Email` field is updated, but the change won't reflect outside the method.
+
+---
