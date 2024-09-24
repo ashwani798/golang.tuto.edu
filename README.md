@@ -612,3 +612,281 @@ In this lecture, I learned how to define and use methods with structs in Go. Str
     In this case, the `Email` field is updated, but the change won't reflect outside the method.
 
 ---
+
+# 16. Defer
+
+### Overview
+In this lecture, I learned about the `defer` statement in Go. The `defer` keyword is used to schedule a function or statement to run after the surrounding function completes.
+
+### Key Takeaways
+
+1. **Using `defer**:**  
+   The `defer` statement ensures that the specified function will run after the main function finishes. It is particularly useful for cleanup actions or closing resources.
+
+   ```go
+   defer fmt.Println("world")
+   ```
+   This line will print `"world"` after the rest of the main function has completed.
+
+2. **Multiple Defer Statements:**  
+   Multiple `defer` statements execute in **LIFO (Last In, First Out)** order. The last defer call is executed first.
+
+   ```go
+   defer fmt.Println("world1")
+   defer fmt.Println("world2")
+   fmt.Println("Hello")
+   ```
+
+   **Output:**
+   ```text
+   Hello
+   world2
+   world1
+   ```
+
+3. **Defer in Loops:**  
+   Using `defer` inside loops postpones the execution of all deferred calls until the loop ends. However, these deferred calls are executed in reverse order.
+
+   ```go
+   func myDefer() {
+       for i := 0; i < 5; i++ {
+           defer fmt.Print(i)
+       }
+   }
+   ```
+
+   **Output:**
+   ```text
+   43210
+   ```
+   The deferred print statements inside the loop are executed in the reverse order of when they were deferred.
+   
+# 17. File Operations
+
+### Overview
+In this lecture, I learned how to work with files in Go. This includes creating a file, writing to it, and reading from it.
+
+### Key Takeaways
+
+1. **Creating a File:**
+   Use `os.Create` to create a new file. This function returns a file pointer and an error, which should be checked.
+
+   ```go
+   file, err := os.Create("./mylcogofile.txt")
+   checkNilErr(err)
+   ```
+
+2. **Writing to a File:**
+   Use `io.WriteString` to write a string to the file.
+
+   ```go
+   length, err := io.WriteString(file, content)
+   checkNilErr(err)
+   fmt.Println("length is: ", length)
+   ```
+
+   **Output:**
+   ```text
+   length is:  44
+   ```
+
+3. **Reading from a File:**
+   Use `os.ReadFile` to read the contents of a file into memory.
+
+   ```go
+   databyte, err := os.ReadFile(filname)
+   checkNilErr(err)
+   fmt.Println("Text data inside the file is:\n ", string(databyte))
+   ```
+
+### Complete Code Example:
+```go
+package main
+
+import (
+	"fmt"
+	"io"
+	"os"
+)
+
+func main() {
+	fmt.Println("welcome to files in golang")
+	content := "This needs to go in a file - golang.tuto.edu"
+
+	file, err := os.Create("./mylcogofile.txt")
+	checkNilErr(err)
+
+	length, err := io.WriteString(file, content)
+	checkNilErr(err)
+	fmt.Println("length is: ", length)
+	defer file.Close()
+	readFile("./mylcogofile.txt")
+}
+
+func readFile(filname string) {
+	databyte, err := os.ReadFile(filname)
+	checkNilErr(err)
+	fmt.Println("Text data inside the file is:\n ", string(databyte))
+}
+
+func checkNilErr(err error) {
+	if err != nil {
+		panic(err)
+	}
+}
+```
+
+# 18. Web Requests
+
+### Overview
+In this lecture, I learned how to make HTTP GET requests in Go using the `net/http` package.
+
+### Key Takeaways
+
+1. **Making a GET Request:**
+   Use `http.Get` to send a GET request to a specified URL. It returns a response and an error.
+
+   ```go
+   response, err := http.Get(url)
+   ```
+
+2. **Response Type:**
+   The response is of type `*http.Response`, which contains the status, headers, and body of the response.
+
+   ```go
+   fmt.Printf("Response is of type: %T\n", response)
+   ```
+
+3. **Reading Response Body:**
+   Use `io.ReadAll` to read the body of the response. Remember to close the response body using `defer`.
+
+   ```go
+   defer response.Body.Close()
+   databytes, err := io.ReadAll(response.Body)
+   ```
+
+### Complete Code Example:
+```go
+package main
+
+import (
+	"fmt"
+	"io"
+	"net/http"
+)
+
+const url = "https://pkg.go.dev"
+
+func main() {
+	fmt.Println("LCO web request")
+
+	response, err := http.Get(url)
+
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Printf("Response is of type: %T\n", response)
+
+	defer response.Body.Close()
+
+	databytes, err := io.ReadAll((response.Body))
+
+	if err != nil {
+		panic(err)
+	}
+	content := string(databytes)
+	fmt.Println(content)
+}
+```
+
+# 19. Handling URLs
+
+### Overview
+In this lecture, I learned how to parse and manipulate URLs in Go using the `net/url` package.
+
+### Key Takeaways
+
+1. **Parsing a URL:**
+   Use `url.Parse` to parse a URL string into a structured format.
+
+   ```go
+   result, _ := url.Parse(myurl)
+   ```
+
+2. **Accessing URL Components:**
+   You can access different parts of the URL, such as the scheme, host, path, port, and raw query.
+
+   ```go
+   fmt.Println(result.RawQuery) // prints the raw query string
+   ```
+
+3. **Query Parameters:**
+   Use `result.Query()` to retrieve the query parameters as a `url.Values` type, which is a map of string slices.
+
+   ```go
+   qparams := result.Query()
+   fmt.Println(qparams["coursename"]) // prints the value for coursename
+   ```
+
+4. **Iterating Over Query Parameters:**
+   You can iterate over the query parameters to print their values.
+
+   ```go
+   for _, val := range qparams {
+       fmt.Println("param is: ", val)
+   }
+   ```
+
+5. **Constructing a New URL:**
+   You can create a new URL using the `url.URL` struct.
+
+   ```go
+   partsOfurl := &url.URL{
+       Scheme:  "https",
+       Host:    "lco.dec",
+       Path:    "tuto",
+       RawPath: "user=ashu",
+   }
+   anotherURL := partsOfurl.String()
+   ```
+
+### Complete Code Example:
+```go
+package main
+
+import (
+	"fmt"
+	"net/url"
+)
+
+const myurl string = "https://lco.ddev:3000/learn?coursename=reactjs&paymentid=ghbj456ghb"
+
+func main() {
+	fmt.Println("Welcome to handling urls in golang")
+	fmt.Println(myurl)
+
+	// Parsing the URL
+	result, _ := url.Parse(myurl)
+
+	fmt.Println(result.RawQuery)
+
+	qparams := result.Query()
+	fmt.Printf("The type of params are: %T\n", qparams)
+	fmt.Println(qparams["coursename"])
+	fmt.Println(qparams["paymentid"])
+
+	for _, val := range qparams {
+		fmt.Println("param is: ", val)
+	}
+
+	partsOfurl := &url.URL{
+		Scheme:  "https",
+		Host:    "lco.dec",
+		Path:    "tuto",
+		RawPath: "user=ashu",
+	}
+
+	anotherURL := partsOfurl.String()
+	fmt.Println(anotherURL)
+}
