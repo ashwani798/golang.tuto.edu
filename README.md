@@ -1059,4 +1059,137 @@ func perfromPostFromRequest() {
    ```plaintext
    {"email":"ashu@go.dev","firstname":"ashu","lastname":"pandey"}
    ```
+# JSON Handling in Go
+
+## Overview
+This Go program demonstrates how to encode and decode JSON data using Go's `encoding/json` package. It includes a `Course` struct that represents course information, illustrating both serialization (converting Go structs to JSON) and deserialization (converting JSON back into Go structs or maps).
+
+## Key Takeaways
+- **Struct Tags for JSON Encoding:** 
+  - Custom tags can be applied to struct fields for controlling their behavior during JSON operations.
+  - Use `json:"-"` to exclude a field from JSON output.
+  - Use `json:"tags,omitempty"` to omit empty fields from JSON output.
+
+## Code Implementation
+```go
+package main
+
+import (
+	"encoding/json"
+	"fmt"
+)
+
+type Course struct {
+	Name     string   `json:"coursename"` // Renamed in JSON
+	Price    int      `json:"Price"`      // Price field
+	Platform string   `json:"website"`    // Platform website
+	Password string   `json:"-"`          // Excluded from JSON output
+	Tags     []string `json:"tags,omitempty"` // Omit if empty
+}
+
+func main() {
+	fmt.Println("welcome to JSON video")
+	// Encodejson() // Uncomment to test encoding
+	DecodeJson() // Calling the decoding function
+}
+
+func Encodejson() {
+	myCourses := []Course{
+		{"reactJS Bootstrap", 299, "learnwithme.in", "abcdxyz", []string{"web-dev", "js"}},
+		{"MERN Stack", 299, "learnwithme.in", "bcdxyz", []string{"fullstack", "js"}},
+		{"Python Dev", 299, "learnwithme.in", "cdxyz", nil}, // Tags are nil, so they'll be omitted
+	}
+
+	// Package this data into JSON format
+	finalJson, err := json.MarshalIndent(myCourses, "", "\t")
+	if err != nil {
+		panic(err)
+	}
+
+	// Print JSON output
+	fmt.Printf("%s\n", finalJson)
+}
+
+func DecodeJson() {
+	jsonDataFromWeb := []byte(`{
+		"coursename": "reactJS Bootstrap",
+		"Price": 299,
+		"website": "learnwithme.in",
+		"tags": ["web-dev","js"]
+	}`)
+
+	var myCourses Course
+
+	checkvalid := json.Valid(jsonDataFromWeb)
+
+	if checkvalid {
+		fmt.Println("JSON was valid")
+		err := json.Unmarshal(jsonDataFromWeb, &myCourses)
+		if err != nil {
+			fmt.Println("Error decoding JSON:", err)
+		} else {
+			fmt.Printf("%#v\n", myCourses) // This will print the struct with field names
+		}
+	} else {
+		fmt.Println("JSON was not valid")
+	}
+
+	// Decoding into a map[string]interface{} to handle dynamic JSON keys/values
+	var myOnlineData map[string]interface{}
+	json.Unmarshal(jsonDataFromWeb, &myOnlineData)
+
+	// Print the map with detailed info
+	fmt.Printf("%#v\n", myOnlineData)
+
+	// Iterating over the key-value pairs in the map
+	for k, v := range myOnlineData {
+		fmt.Printf("key is %v and value is %v and type of data is: %T\n", k, v, v)
+	}
+}
+```
+## Example Outputs
+
+### Encoded JSON Output:
+```json
+[
+    {
+        "coursename": "reactJS Bootstrap",
+        "Price": 299,
+        "website": "learnwithme.in",
+        "tags": [
+            "web-dev",
+            "js"
+        ]
+    },
+    {
+        "coursename": "MERN Stack",
+        "Price": 299,
+        "website": "learnwithme.in",
+        "tags": [
+            "fullstack",
+            "js"
+        ]
+    },
+    {
+        "coursename": "Python Dev",
+        "Price": 299,
+        "website": "learnwithme.in"
+    }
+]
+```
+## Decoded Struct Output:
+```ruby
+main.Course{Name:"reactJS Bootstrap", Price:299, Platform:"learnwithme.in", Password:"", Tags:[]string{"web-dev", "js"}}
+```
+## Decoded Map Output:
+```go
+map[string]interface {}{"Price":299, "coursename":"reactJS Bootstrap", "tags":[]interface {}{"web-dev", "js"}, "website":"learnwithme.in"}
+```
+## Iterated Map Output:
+```vbnet
+key is coursename and value is reactJS Bootstrap and type of data is: string
+key is Price and value is 299 and type of data is: float64
+key is website and value is learnwithme.in and type of data is: string
+key is tags and value is [web-dev js] and type of data is: []interface {}
+
 
