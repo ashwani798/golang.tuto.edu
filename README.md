@@ -890,3 +890,173 @@ func main() {
 	anotherURL := partsOfurl.String()
 	fmt.Println(anotherURL)
 }
+```
+
+# 20. Web Request Verbs 
+
+### Overview
+In this lecture, I learned how to make HTTP requests in Go, including GET, POST (with JSON), and POST (with form data). The `net/http` package is used to handle HTTP requests, while `io` and `strings` packages assist in reading and processing responses.
+
+### Key Takeaways
+
+1. **Performing a GET Request:**
+   - A GET request is used to retrieve data from a server. The `http.Get` method sends a request to the specified URL.
+   - The response contains details like status code, content length, and the response body.
+   - `defer` is used to ensure the response body is properly closed after reading.
+
+   **Code Example:**
+   ```go
+   response, err := http.Get(myurl)
+   if err != nil {
+       panic(err)  // Handle error if the GET request fails
+   }
+   defer response.Body.Close()  // Close the response body after we're done reading it
+
+   content, _ := io.ReadAll(response.Body)  // Read the response body
+   fmt.Println(string(content))  // Convert the content to a string and print it
+   ```
+   **Explanation:**
+   - The `http.Get` method sends a GET request to `myurl` and retrieves the response.
+   - `io.ReadAll(response.Body)` reads the response body, and we convert it to a string before printing.
+   - `defer response.Body.Close()` ensures that the connection is closed after the body is read.
+
+2. **Performing a POST Request with JSON:**
+   - A POST request is used to send data to the server. In this example, we are sending a JSON payload.
+   - We use `strings.NewReader` to create a reader containing our JSON data, and `http.Post` to send it to the server.
+   
+   **Code Example:**
+   ```go
+   requestBody := strings.NewReader(`{
+       "courseNmae":"Let's go for golang",
+       "price":0,
+       "platform":"learnCodeOnline.in"
+   }`)
+   response, err := http.Post(myurl, "application/json", requestBody)
+   if err != nil {
+       panic(err)
+   }
+   defer response.Body.Close()
+   
+   content, _ := io.ReadAll(response.Body)
+   fmt.Println(string(content))  // Print the server's response
+   ```
+   **Explanation:**
+   - We construct a JSON payload using `strings.NewReader`.
+   - `http.Post` sends the request, with the content type set to `"application/json"`.
+   - The response from the server is printed after being read from `response.Body`.
+
+3. **Performing a POST Request with Form Data:**
+   - A POST request can also send form data, which is useful when submitting data like names and emails.
+   - We use `url.Values{}` to create form data and send it using `http.PostForm`.
+
+   **Code Example:**
+   ```go
+   data := url.Values{}
+   data.Add("firstname", "ashu")
+   data.Add("lastname", "pandey")
+   data.Add("email", "ashu@go.dev")
+
+   response, err := http.PostForm(myurl, data)  // Send form data as POST request
+   if err != nil {
+       panic(err)
+   }
+   defer response.Body.Close()
+   
+   content, _ := io.ReadAll(response.Body)
+   fmt.Println(string(content))  // Print the response received from the server
+   ```
+   **Explanation:**
+   - `url.Values{}` creates key-value pairs representing form fields (e.g., firstname, lastname, email).
+   - `http.PostForm` sends the form data as a POST request.
+   - The server’s response is read and printed.
+
+### Complete Code Example:
+
+```go
+package main
+
+import (
+	"fmt"
+	"io"
+	"net/http"
+	"net/url"
+	"strings"
+)
+
+func main() {
+	fmt.Println("Welcome to webReqVerbs")
+	//performGetRequest()
+	//perfromPostjsonRequest()
+	perfromPostFromRequest()
+}
+
+func performGetRequest() {
+	const myurl = "http://localhost:8000/get"
+	response, err := http.Get(myurl)
+	if err != nil {
+		panic(err)
+	}
+	defer response.Body.Close()
+	fmt.Println("Status code: ", response.StatusCode)
+	fmt.Println("Content length is: ", response.ContentLength)
+	var responseString strings.Builder
+	content, _ := io.ReadAll(response.Body)
+	byteCount, _ := responseString.Write(content)
+	fmt.Println("ByteCount is: ", byteCount)
+	fmt.Println(responseString.String())
+}
+
+func perfromPostjsonRequest() {
+	const myurl = "http://localhost:8000/post"
+	requestBody := strings.NewReader(`
+	     {
+	        "courseNmae":"Let's go for golang",
+			"price":0,
+			"platform":"learnCodeOnline.in"
+		 }
+	`)
+	response, err := http.Post(myurl, "application/json", requestBody)
+	if err != nil {
+		panic(err)
+	}
+	defer response.Body.Close()
+	content, _ := io.ReadAll(response.Body)
+	fmt.Println(string(content))
+}
+
+func perfromPostFromRequest() {
+	const myurl = "http://localhost:8000/postform"
+	data := url.Values{}
+	data.Add("firstname", "ashu")
+	data.Add("lastname", "pandey")
+	data.Add("email", "ashu@go.dev")
+	response, err := http.PostForm(myurl, data)
+	if err != nil {
+		panic(err)
+	}
+	defer response.Body.Close()
+	content, _ := io.ReadAll(response.Body)
+	fmt.Println(string(content))
+}
+```
+
+### Example Outputs:
+
+1. **GET Request Output:**
+   ```plaintext
+   Status code:  200
+   Content length is:  43
+   ByteCount is:  43
+   {"message":"Hello from learnCodeonline.in"}
+   ```
+
+2. **POST Request with JSON Output:**
+   ```plaintext
+   {"courseNmae":"Let's go for golang","price":0,"platform":"learnCodeOnline.in"}
+   ```
+
+3. **POST Request with Form Data Output:**
+   ```plaintext
+   {"email":"ashu@go.dev","firstname":"ashu","lastname":"pandey"}
+   ```
+
