@@ -1059,7 +1059,7 @@ func perfromPostFromRequest() {
    ```plaintext
    {"email":"ashu@go.dev","firstname":"ashu","lastname":"pandey"}
    ```
-# JSON Handling in Go
+# 21. JSON Handling
 
 ## Overview
 This Go program demonstrates how to encode and decode JSON data using Go's `encoding/json` package. It includes a `Course` struct that represents course information, illustrating both serialization (converting Go structs to JSON) and deserialization (converting JSON back into Go structs or maps).
