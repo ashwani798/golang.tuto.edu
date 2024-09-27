@@ -1191,5 +1191,17 @@ key is coursename and value is reactJS Bootstrap and type of data is: string
 key is Price and value is 299 and type of data is: float64
 key is website and value is learnwithme.in and type of data is: string
 key is tags and value is [web-dev js] and type of data is: []interface {}
+```
+# 22. Go Web Server with gorilla/mux
 
+## Overview
+This project demonstrates a simple web server written in Go using the `gorilla/mux` router package. The server listens on `port 4000` and responds with a basic HTML message at the root URL.
+
+## Key Concepts
+
+This Go project covers the following concepts:
+
+- Setting up a web server in Go using the `net/http` package.
+- Using the `gorilla/mux` router to define routes.
+- Handling HTTP GET requests and serving responses.
 
