@@ -1205,3 +1205,100 @@ This Go project covers the following concepts:
 - Using the `gorilla/mux` router to define routes.
 - Handling HTTP GET requests and serving responses.
 
+## Prerequisites
+
+To run this project, you need the following:
+
+- Go (version 1.16+)
+- The `gorilla/mux` package (install instructions below)
+
+## Installation
+
+1. Clone this repository or download the Go file.
+2. Install the required Go packages by running:
+
+   ```bash
+   go get -u github.com/gorilla/mux
+   
+3. Run the Go Program
+
+   ```bash
+   go run main.go
+   ```
+
+## Usage
+
+Once the server is running, open your browser and visit [http://localhost:4000/](http://localhost:4000/) to view the output:
+
+### Output
+You will see an HTML message on the page:
+
+```html
+Welcome to golang
+```
+
+## Code Breakdown
+
+### Importing Packages
+
+The following Go packages are used:
+
+- `fmt` for printing messages.
+- `log` for logging errors.
+- `net/http` for building the web server.
+- `github.com/gorilla/mux` for routing requests.
+
+### Setting Up the Server
+
+The main function initializes the server:
+
+```go
+func main() {
+    fmt.Println("Hello mod in golang")
+    greeter()
+
+    r := mux.NewRouter()
+    r.HandleFunc("/", serveHome).Methods("GET")
+
+    log.Fatal(http.ListenAndServe(":4000", r))
+}
+```
+### The mux.NewRouter() function creates a new router.
+The route / is handled by the serveHome function, which responds with a simple HTML message.
+
+### Greeter Function
+```go
+func greeter() {
+    fmt.Println("Hello mod in golang")
+}
+```
+
+### Handling HTTP Requests
+The `serveHome` function is responsible for handling the root URL (/) and sending a response to the client:
+
+```go
+func serveHome(w http.ResponseWriter, r *http.Request) {
+    w.Write([]byte("<h1>Welcome to golang</h1>"))
+}
+```
+
+### Example Output
+When you visit [http://localhost:4000/](http://localhost:4000/), you will see the following HTML output in your browser:
+
+```html
+<h1>Welcome to golang</h1>
+```
+
+### Running the Project
+To run the project:
+
+- Ensure Go and the required packages are installed.
+- Run the project using:
+
+```bash
+go run main.go
+```
+### Conclusion
+This project introduces a basic Go web server using gorilla/mux for routing. It is a simple but powerful way to manage HTTP requests and build APIs or web applications.
+
+
