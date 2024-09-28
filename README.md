@@ -1301,4 +1301,126 @@ go run main.go
 ### Conclusion
 This project introduces a basic Go web server using gorilla/mux for routing. It is a simple but powerful way to manage HTTP requests and build APIs or web applications.
 
+# 23. Course API with Go and Gorilla Mux
+
+## Overview
+This is a simple API built using Go, Gorilla Mux, and `crypto/rand` for course management. It allows users to create, retrieve, update, and delete courses. Each course has a unique ID, name, price, and an author associated with it.
+
+## Key Concepts
+
+## Features
+- **View all courses** - Get a list of all available courses.
+- **View a single course** - Fetch details of a specific course by ID.
+- **Create a new course** - Add a new course with a unique ID.
+- **Update an existing course** - Modify details of an existing course.
+- **Delete a course** - Remove a course by ID.
+
+## Tech Stack
+
+- **Go**: The programming language used for building the API.
+- **Gorilla Mux**: A powerful routing library for handling HTTP requests.
+- **crypto/rand**: Used for generating random course IDs.
+- **JSON Encoding**: For handling request and response payloads.
+
+## API Endpoints
+
+### Get all courses
+
+```bash
+GET /courses
+```
+## Response Example
+
+### Get all courses
+
+```json
+[
+  {
+    "courseid": "1",
+    "coursename": "ReactJS",
+    "author": {
+      "fullname": "Ashwani Pandey",
+      "website": "lco.dev"
+    }
+  },
+  {
+    "courseid": "2",
+    "coursename": "Python Dev",
+    "author": {
+      "fullname": "Ashwani Pandey",
+      "website": "py.dev"
+    }
+  }
+]
+```
+### Get a single course
+
+```bash
+GET /course/{id}
+```
+### Response Example
+
+```json
+{
+  "courseid": "1",
+  "coursename": "ReactJS",
+  "author": {
+    "fullname": "Ashwani Pandey",
+    "website": "lco.dev"
+  }
+}
+```
+# API Documentation
+
+## 1. Create a New Course
+
+### Endpoint
+`POST /course`
+
+### Request Body Example
+
+```json
+{
+  "coursename": "Go Programming",
+  "author": {
+    "fullname": "John Doe",
+    "website": "go.dev"
+  }
+}
+```
+### Response Example
+
+```json
+{
+  "courseid": "random-id",
+  "coursename": "Go Programming",
+  "author": {
+    "fullname": "John Doe",
+    "website": "go.dev"
+  }
+}
+```
+# API Documentation
+
+## 2. Update a Course
+
+### Endpoint
+```bash
+PUT /course/{id}
+```
+## Request Body Example
+
+```json
+{
+  "coursename": "Updated Course",
+  "author": {
+    "fullname": "New Author",
+    "website": "newsite.com"
+  }
+}
+```
+## Delete a Course
+
+To delete a course, send a DELETE request to the following endpoint:
+
 
